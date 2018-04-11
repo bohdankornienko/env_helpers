@@ -15,3 +15,5 @@ function server_get()
     local_path=$3
     scp -r ${cred}:${server_path} ${local_path}
 }
+
+alias gl='git log --all --oneline --graph --decorate -4'
