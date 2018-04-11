@@ -1,8 +1,3 @@
-" Brackets autocomplete
-" inoremap { {<CR>}<Esc>ko
-"let g:ycm_global_ycm_extra_conf = '$HOME/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-"
-
 set number
 set tabstop=4
 set softtabstop=4
@@ -91,5 +86,6 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" Brackets complete
-inoremap { {<CR><BS>}<Esc>ko
+" Brackets autocomplete
+inoremap { {<CR>}<Esc>ko
+let g:ycm_global_ycm_extra_conf = '$HOME/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
