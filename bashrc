@@ -17,3 +17,4 @@ function server_get()
 }
 
 alias gl='git log --all --oneline --graph --decorate -4'
+alias ecmake='cmake -G "Eclipse CDT4 - Unix Makefiles"'
