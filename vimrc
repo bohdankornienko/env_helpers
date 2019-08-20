@@ -8,10 +8,6 @@ set autoindent
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set list
 
-filetype plugin on
-let python_highlight_all=1
-syntax on
-
 " colorscheme slate " useful for bash in Windows 10
 
 " Enable folding
@@ -56,6 +52,22 @@ Plugin 'majutsushi/tagbar'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+"
+"python with virtualenv support
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+let g:syntastic_python_checkers = ['flake8']
+
+filetype plugin on
+let python_highlight_all=1
+syntax on
 
 let g:SimpylFold_docstring_preview=1
 
@@ -64,14 +76,6 @@ let g:SimpylFold_docstring_preview=1
 " au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 set encoding=utf-8
-
-py3 << EOF
-import os.path
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-    project_base_dir = os.environ['VIRTUAL_ENV']
-    sys.path.insert(0, project_base_dir)
-EOF
 
 set laststatus=2             "Always show the status bar and not on splited like before(this was the main problem)
 
@@ -89,3 +93,6 @@ nnoremap <C-H> <C-W><C-H>
 " Brackets autocomplete
 inoremap { {<CR>}<Esc>ko
 let g:ycm_global_ycm_extra_conf = '$HOME/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+
+" workaround for ctags warning
+let g:easytags_suppress_ctags_warning = 1
